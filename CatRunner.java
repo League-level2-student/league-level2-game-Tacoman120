@@ -15,6 +15,7 @@ public class CatRunner {
 	CatRunner(){
 		street = new JFrame();
 		cp = new CatPannel();
+		
 	}
 	
 	void setup(){
@@ -22,6 +23,7 @@ public class CatRunner {
 		street.setSize(WIDTH, HEIGHT);
 		street.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		street.setVisible(true);
+		street.addKeyListener(cp);
 	}
 
 }
