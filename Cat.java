@@ -13,7 +13,20 @@ public class Cat extends GameObject {
 		// TODO Auto-generated constructor stub
 		speed = 20;
 	}
-	
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time
+	//sign out of github next time//sign out of github next time
+
 	void draw(Graphics g){
 		g.setColor(Color.BLUE);
         g.fillRect(x, y, width, height);
