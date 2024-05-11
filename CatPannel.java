@@ -20,10 +20,12 @@ public class CatPannel extends JPanel implements ActionListener, KeyListener{
     final int END = 2;
     int currentState = MENU;
     Timer frameDraw;
+    Timer itemSpawn;
     Font titleFont = new Font("Arial", Font.PLAIN, 48);
     Font instructionFont = new Font("Arial", Font.PLAIN, 28);
     Font nextFont = new Font("Arial", Font.PLAIN, 28);
-    Cat tabby = new Cat(700, 250, 50, 50);
+    Cat tabby = new Cat(50, 240, 50, 50);
+    ObjectManager manager = new ObjectManager(tabby);
     
 	CatPannel(){
 		
@@ -47,7 +49,7 @@ public class CatPannel extends JPanel implements ActionListener, KeyListener{
 		
 	}
 	 void updateGameState() { 
-		 
+		 manager.update();
 	 }
 	 void updateEndState()  { 
 }
@@ -69,7 +71,7 @@ public class CatPannel extends JPanel implements ActionListener, KeyListener{
 	 void drawGameState(Graphics g) { 
 		 g.setColor(Color.green);
 			g.fillRect(0, 0, 800, 500);
-			tabby.draw(g);
+			manager.draw(g);
 	 }
 	 void drawEndState(Graphics g)  { 
 		 g.setColor(Color.RED);
@@ -83,6 +85,11 @@ public class CatPannel extends JPanel implements ActionListener, KeyListener{
 			g.setFont(nextFont);
 			g.setColor(Color.BLACK);
 			g.drawString("you scored  points!", 240, 400);
+	 }
+	 
+	 void startGame() {
+		 itemSpawn = new Timer(1000 , manager);
+		    itemSpawn.start();
 	 }
 
 	@Override
@@ -111,20 +118,27 @@ public class CatPannel extends JPanel implements ActionListener, KeyListener{
 		if (e.getKeyCode()==KeyEvent.VK_ENTER) {
 		    if (currentState == END) {
 		        currentState = MENU;
-		    } else {
+		    } else if(currentState == MENU){
+		    	startGame();
+		    } else if(currentState == GAME){
+		    } 
 		        currentState++;
 		    }
-		}   
+		   
 		if (e.getKeyCode()==KeyEvent.VK_UP) {
+			tabby.up();
 		    System.out.println("UP");
 		}
 		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
+			tabby.down();
 		    System.out.println("DOWN");
 		}
 		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+			tabby.left();
 		    System.out.println("LEFT");
 		}
 		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+			tabby.right();
 		    System.out.println("RIGHT");
 		}
 	
