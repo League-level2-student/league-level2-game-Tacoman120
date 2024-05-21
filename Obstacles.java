@@ -11,14 +11,16 @@ public class Obstacles extends GameObject {
 	Obstacles(int x, int y, int width, int height) {
 		super(x, y, width, height);
 		// TODO Auto-generated constructor stub
-		speed = 1;
+		speed = 3;
 		if (needImage) {
 		    loadImage ("car.png");
 		}
 	}
 	
-	void uodate(){
+	void update(){
+		System.out.println("car moves");
 		x-=speed;
+		super.update();
 	}
 	
 	void draw(Graphics g) {

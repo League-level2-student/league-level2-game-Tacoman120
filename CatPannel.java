@@ -5,7 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -26,11 +28,18 @@ public class CatPannel extends JPanel implements ActionListener, KeyListener{
     Font nextFont = new Font("Arial", Font.PLAIN, 28);
     Cat tabby = new Cat(50, 240, 50, 50);
     ObjectManager manager = new ObjectManager(tabby);
+    public static BufferedImage image;
+    public static boolean needImage = true;
+    public static boolean gotImage = false;	
+    
     
 	CatPannel(){
 		
 		frameDraw = new Timer(1000/60,this);
 	    frameDraw.start();
+	    if (needImage) {
+	        loadImage ("highway.png");
+	    }
 	}
     
 	@Override
@@ -49,6 +58,7 @@ public class CatPannel extends JPanel implements ActionListener, KeyListener{
 		
 	}
 	 void updateGameState() { 
+		 
 		 manager.update();
 	 }
 	 void updateEndState()  { 
@@ -69,9 +79,15 @@ public class CatPannel extends JPanel implements ActionListener, KeyListener{
 			g.drawString("press SPACE for instructions", 240, 400);
 	 }
 	 void drawGameState(Graphics g) { 
-		 g.setColor(Color.green);
-			g.fillRect(0, 0, 800, 500);
-			manager.draw(g);
+		 if (gotImage) {
+				g.drawImage(image, 0, 0, 800, 500, null);
+			} else {
+				g.setColor(Color.GRAY);
+				g.fillRect(0, 0, 800, 500);
+			}
+
+
+		manager.draw(g);
 	 }
 	 void drawEndState(Graphics g)  { 
 		 g.setColor(Color.RED);
@@ -148,6 +164,18 @@ public class CatPannel extends JPanel implements ActionListener, KeyListener{
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	void loadImage(String imageFile) {
+	    if (needImage) {
+	        try {
+	            image = ImageIO.read(this.getClass().getResourceAsStream(imageFile));
+		    gotImage = true;
+	        } catch (Exception e) {
+	            
+	        }
+	        needImage = false;
+	    }
 	}
 	 
 	

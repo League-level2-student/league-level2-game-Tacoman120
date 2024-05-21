@@ -24,6 +24,7 @@ public class CatRunner {
 		street.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		street.setVisible(true);
 		street.addKeyListener(cp);
+		
 	}
 
 }

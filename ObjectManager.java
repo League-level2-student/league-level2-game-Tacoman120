@@ -30,15 +30,17 @@ public class ObjectManager implements ActionListener{
 		} else {
 		spawnLane = random.nextInt(3);
 		if(spawnLane == 0) {
-			obstacles.add(new Obstacles(750,120,50,50));
+			obstacles.add(new Obstacles(750,120,150,50));
 		}else if(spawnLane == 1) {
-			obstacles.add(new Obstacles(750,240,50,50));
+			obstacles.add(new Obstacles(750,240,150,50));
 		}else if(spawnLane == 2) {
-			obstacles.add(new Obstacles(750,360,50,50));
+			obstacles.add(new Obstacles(750,360,150,50));
 		}
 		}
 	}
 	void update() {
+		purgeObjects();
+		System.out.println(obstacles);
 		for(Obstacles o : obstacles) {
 			o.update();
 			if(o.x<0) {
